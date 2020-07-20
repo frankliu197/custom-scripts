@@ -4,7 +4,9 @@ if [ -z "$1" ]; then
     echo "No input. See help."
 fi
 echo "Finding window: $1"
+
 windows=$(xdotool search --all --onlyvisible --class "^$1$")
+#fuzzy match: windows=$(xdotool search --all --onlyvisible --class "$1")
 
 if [[ -z $windows ]]; then
     echo "There is no program named '$1' opened at the moment."
@@ -15,4 +17,4 @@ fi
 
 echo "Found windows: $windows"
 
-xdotool search --all --onlyvisible --class "$1" windowactivate
+xdotool search --all --onlyvisible --class "^$1$" windowactivate
